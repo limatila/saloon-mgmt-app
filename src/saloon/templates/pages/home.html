@@ -4,7 +4,7 @@
 
 {% block content %}
 <!-- Home Render -->
-    <div class="daily-view">
+    <div class="daily-view view">
         {% comment %}
             display a flash of important info including:
             quantity of appointments in the next hour
@@ -13,11 +13,7 @@
         {% endcomment %}
     </div>
 
-    <div class="appointments-view">
-        {% comment %} display small list view of all appointments w/ data {% endcomment %}
-    </div>
+    {% include "components/appointments-view.html" %}
 
-    <div class="workers-view">
-        {% comment %} display small view of all workers and number of appointments per worker {% endcomment %}
-    </div>
+    {% include "components/workers-view.html" %}
 {% endblock content %}

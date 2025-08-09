@@ -1,0 +1,27 @@
+<div class="appointments-view view">
+    <table>
+        {% comment %} display small list view of all appointments w/ data {% endcomment %}
+        <thead>
+            <tr class="bg-pink-200">
+                <th>Name</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Schedule</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in appointments %}
+                <tr class="hover:bg-gray-50">
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>{{ item.status }}</td>
+                    <td>{{ item.schedule_datetime }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4" class="py-4 text-gray-500">No appointments found.<br> Please add it at 'schedule appointment'!</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

@@ -8,6 +8,8 @@
             {{ title }} - Saloon Management
         </title>
         <meta charset="UTF-8">
+        <meta name="description" content="Management Page for the Saloon (fictional)">
+        <meta name="keywords" content="saloon">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         {% tailwind_css %}
@@ -17,7 +19,7 @@
         <header>
             <div class="wrapper header-content">
                 <h1>
-                    {{ title }} - Saloon Management
+                    {{ title }}<span id="mgmt-title"> - Saloon Management</span>
                 </h1>
                 <nav>
                     {% comment %} TODO {% endcomment %}
@@ -26,7 +28,7 @@
         </header>
 
         <section class="main-content">
-            <div class="wrapper flex container">
+            <div class="wrapper flex flex-col justify-evenly container">
                 {% if baseRender %}
                     <h2 class="place-self-center">Django + Tailwind = ❤️</h2>
                 {% elif childRender %}

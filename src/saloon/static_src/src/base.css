@@ -13,14 +13,16 @@
 /** Base configuration */
 *{
   @apply box-border;
+  @apply rounded-xl;
 }
 html{
   @apply scroll-smooth;
 }
 body, html{
+  @apply rounded-none;
   @apply w-screen h-screen;
   @apply max-w-screen;
-  @apply overflow-hidden;
+  @apply overflow-auto; /* !DEBUG */
 }
 body{
   @apply flex flex-col h-full;
@@ -59,12 +61,13 @@ button{
 
 /** position at middle */
 .wrapper{
-  @apply m-auto w-5/6 p-0;
+  @apply m-auto w-2/3 p-0;
   @apply mt-0 mb-0;
 }
 
 /* Header */
 header {
+  @apply rounded-t-none;
   @apply bg-pink-500;
   @apply w-full h-20 top-0;
 }
@@ -72,20 +75,24 @@ header {
   @apply flex justify-between items-center;
   @apply h-full;
 }
+#mgmt-title{
+  @apply hidden;
+  @apply lg:inline;
+}
 
 /* Content - Replaceable per page */
 section.main-content{
   @apply flex grow;
-  @apply w-full;
 }
 
 /* Footer */
 footer {
+  @apply rounded-b-none;
   @apply bg-pink-700 text-white;
   @apply w-full h-[5rem];
   @apply z-[900];
 }
 .footer-content{
-  @apply flex justify-around items-center;
+  @apply flex justify-between items-center;
   @apply h-full;
 }

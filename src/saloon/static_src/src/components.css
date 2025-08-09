@@ -1,2 +1,72 @@
 @import "tailwindcss";
 
+/*? daily-view, .appointments-view, .workers-view */
+.view{
+    @apply h-[25%] w-full;
+    @apply max-w-full;
+    @apply p-2;
+    @apply border-2 border-pink-300 rounded-2xl;
+}
+
+/* Appointments-view (table) */
+div.appointments-view{
+    @apply overflow-x-auto;
+    & table{
+        @apply w-full table-auto;
+        & * tr{
+            & th, td{
+                @apply px-4 py-2 text-center;
+            }
+            & td{
+                @apply border border-gray-300;
+            }
+        }
+        & tbody{
+            @apply overflow-y-auto;
+        }
+    }
+}
+
+/* Workers-view (grid) */
+div.workers-view{
+    @apply overflow-auto;
+    & div.grid{
+        @apply max-h-full;
+        @apply overflow-auto;
+        @apply grid-cols-3;
+        @apply lg:grid-cols-4;
+        @apply gap-2.5 lg:gap-4;
+        & div.worker{
+            @apply grid grid-cols-4;
+            @apply max-lg:grid-cols-2;
+            @apply border border-gray-400;
+            & div, img{
+                @apply min-w-1/4 h-full;
+                @apply max-w-full;
+            }
+            & div{
+                @apply flex justify-center items-center;
+                & span { 
+                    @apply flex; 
+                    @apply grow justify-center;
+                    & img { @apply mr-2}
+                }
+            }
+            & div.eliminable {
+                @apply max-lg:hidden;
+            }
+        }
+    }
+}
+
+/* Force each inner child to have its own fixed proportion */
+div.workers-view div.grid div.worker > * {
+  @apply basis-1/4 flex-shrink-0;
+}
+
+/* custom screen sizes */
+@media screen and (max-width: 490px ) {
+  div.workers-view div.grid {
+     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

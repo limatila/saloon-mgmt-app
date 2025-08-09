@@ -1,0 +1,13 @@
+<div class="workers-view view">
+    <div class="grid">
+        {% for item in workers %}
+            {% comment %} max 12 in home {% endcomment %}
+            <div class="worker">
+                <img src={{ item.photo.url }} title="{{ worker.name }}" alt="photo of {{ worker.name }}">
+                <div class="eliminable"><span>{{ worker.name }}</span></div>
+                <div title="Active and Pending schedules"><span><img src="https://cdn-icons-png.flaticon.com/24/10593/10593542.png" alt="icon">{{ worker_active_schedules }}</span></div>
+                <div class="eliminable"><span>{{ worker_done_schedules }}</span></div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
