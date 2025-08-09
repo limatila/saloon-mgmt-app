@@ -17,6 +17,7 @@ import dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+NPM_BIN_PATH = Path(r'C:\Program Files\nodejs\npm.cmd')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
@@ -38,8 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'saloon'
+    'tailwind',
+
+    'saloon',
 ]
+
+TAILWIND_APP_NAME = 'saloon'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -57,11 +62,12 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'templates'
+            BASE_DIR / 'saloon' / 'templates'
         ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -108,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Fortaleza'
 
 USE_I18N = True
 
@@ -118,9 +124,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
+#? URL prefix for static files, when looking into browser (?).
+# Example: "http://mydomain.co/static/"
 STATIC_URL = 'static/'
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
+#All dirs that include static files are required to be here.
+STATICFILES_DIRS = [
+    BASE_DIR / "saloon" / "static",
+]
 
-DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+# Path for static files to be saved when 'manage.py collectstatic' for production
+STATIC_ROOT = BASE_DIR / 'static/'

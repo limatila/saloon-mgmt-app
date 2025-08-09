@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+/**
+  * A catch-all path to Django template files, JavaScript, and Python files
+  * that contain Tailwind CSS classes and will be scanned by Tailwind to generate the final CSS file.
+  *
+  * If your final CSS file is not being updated after code changes, you may want to broaden or narrow
+  * the scope of this path.
+  */
+@source "../../../**/*.{html,py,js}";
+
+
+/** Base configuration */
+*{
+  @apply box-border size;
+  @apply text-xl;
+}
+html{
+  @apply scroll-smooth;
+}
+
+/* Fonts */
+h1, h2, h3{
+  @apply;
+  font-family: 'Montserrat', sans-serif;
+}
+p, span, li{
+  @apply font-light;
+  font-family: 'Open Sans', sans-serif;
+}
+
+/** Divs */
+a{
+  text-decoration: none;
+}
+button{
+  @apply scale-[155%];
+  @apply transition-transform duration-100;
+}
+
+/** position at middle */
+.wrapper{
+  @apply m-auto w-5/6 p-0;
+}
+
+/* Header */
+header {
+  @apply bg-cyan-400;
+  @apply w-full h-[6rem] top-0;
+  @apply fixed z-[1000];
+}
+
+/* Footer */
+footer {
+  @apply bg-cyan-800;
+  @apply w-full h-[3.5rem];
+  @apply z-[900];
+  
+  @apply flex 
+}
