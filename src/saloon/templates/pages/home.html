@@ -1,1 +1,23 @@
 {% extends "common/base.html" %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+<!-- Home Render -->
+    <div class="daily-view">
+        {% comment %}
+            display a flash of important info including:
+            quantity of appointments in the next hour
+            quantity of appointments concluded in the day
+            quantity of appointments
+        {% endcomment %}
+    </div>
+
+    <div class="appointments-view">
+        {% comment %} display small list view of all appointments w/ data {% endcomment %}
+    </div>
+
+    <div class="workers-view">
+        {% comment %} display small view of all workers and number of appointments per worker {% endcomment %}
+    </div>
+{% endblock content %}

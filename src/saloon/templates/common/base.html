@@ -4,7 +4,9 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Django Tailwind</title>
+        <title>
+            {{ title }} - Saloon Management
+        </title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -13,21 +15,29 @@
 
     <body class="bg-gray-50 text-black font-serif leading-normal tracking-normal">
         <header>
-            <div class="wrapper">
+            <div class="wrapper header-content">
                 <h1>
-                    Home - Saloon Management
+                    {{ title }} - Saloon Management
                 </h1>
+                <nav>
+                    {% comment %} TODO {% endcomment %}
+                </nav>
             </div>
         </header>
 
-        <div class="wrapper container mx-auto">
-            <section class="flex items-center justify-center">
-                <h1 class="text-5xl">Django + Tailwind = ❤️</h1>
-            </section>
-        </div>
+        <section class="main-content">
+            <div class="wrapper flex container">
+                {% if baseRender %}
+                    <h2 class="place-self-center">Django + Tailwind = ❤️</h2>
+                {% elif childRender %}
+                    {% block content %}
+                    {% endblock content %}
+                {% endif %}
+            </div>
+        </section>
 
         <footer>
-            <div class="wrapper">
+            <div class="wrapper footer-content">
                 <p>Hi</p>
                 <p>Hello</p>
                 <p>Olá</p>

@@ -1,7 +1,8 @@
-from . import views
+from .views import renderers
 from django.urls import path
 
 urlpatterns = [
-    path('', views.redirectHome, name='root'),
-    path('home', views.home, name='home')
+    path('', renderers.redirectHome, name='root'),
+    path('home', renderers.home, name='home'),
+    path('base', renderers.base, name='base-debug')
 ]

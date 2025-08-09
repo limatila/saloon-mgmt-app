@@ -1,6 +1,6 @@
 {
   "name": "saloon",
-  "type": "module",
+  "type": "commonjs",
   "version": "4.2.0",
   "description": "",
   "scripts": {
@@ -15,7 +15,7 @@
   "license": "MIT",
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.11",
-
+    "autoprefixer": "",
     "cross-env": "^7.0.3",
     "postcss": "^8.5.6",
     "postcss-cli": "^11.0.1",

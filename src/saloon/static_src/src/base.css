@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+/**
+  * A catch-all path to Django template files, JavaScript, and Python files
+  * that contain Tailwind CSS classes and will be scanned by Tailwind to generate the final CSS file.
+  *
+  * If your final CSS file is not being updated after code changes, you may want to broaden or narrow
+  * the scope of this path.
+  */
+@source "../../../**/*.{html,py,js}";
+
+
+/** Base configuration */
+*{
+  @apply box-border;
+}
+html{
+  @apply scroll-smooth;
+}
+body, html{
+  @apply w-screen h-screen;
+  @apply max-w-screen;
+  @apply overflow-hidden;
+}
+body{
+  @apply flex flex-col h-full;
+}
+
+/* Fonts */
+h1, h2, h3{
+  font-family: 'Montserrat', sans-serif;
+  @apply font-bold;
+}
+h1{
+  @apply text-3xl;
+}
+h2{
+  @apply text-2xl;
+}
+h3{
+  @apply text-xl;
+}
+p, span, li{
+  @apply font-light;
+  font-family: 'Open Sans', sans-serif;
+}
+
+/** Divs */
+h1, h2, h3, p, span, li, button{
+  @apply p-1 w-fit h-fit;
+}
+a{
+  text-decoration: none;
+}
+button{
+  @apply scale-[155%];
+  @apply transition-transform duration-100;
+}
+
+/** position at middle */
+.wrapper{
+  @apply m-auto w-5/6 p-0;
+  @apply mt-0 mb-0;
+}
+
+/* Header */
+header {
+  @apply bg-pink-500;
+  @apply w-full h-20 top-0;
+}
+.header-content{
+  @apply flex justify-between items-center;
+  @apply h-full;
+}
+
+/* Content - Replaceable per page */
+section.main-content{
+  @apply flex grow;
+  @apply w-full;
+}
+
+/* Footer */
+footer {
+  @apply bg-pink-700 text-white;
+  @apply w-full h-[5rem];
+  @apply z-[900];
+}
+.footer-content{
+  @apply flex justify-around items-center;
+  @apply h-full;
+}
