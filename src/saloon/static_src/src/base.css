@@ -82,11 +82,33 @@ header {
   & img, h1{
     @apply inline;
   }
+  & h1{
+    @apply max-sm:text-sm;
+  }
+  & img{
+    @apply max-sm:scale-75;
+  }
 }
 #mgmt-title{
   @apply hidden;
   @apply lg:inline;
   @apply font-light;
+}
+
+/** Nav bar at Header */
+#nav-bar{
+  @apply flex justify-evenly;
+  & button{
+    @apply border-2 border-white bg-white text-pink-700;
+    @apply transition-colors duration-100;
+    @apply max-sm:scale-90 lg:scale-125;
+  }
+  & button:hover{
+    @apply bg-pink-800 text-white;
+  }
+  & button + button{
+    @apply ml-1 max-sm:m-0 lg:ml-10;
+  }
 }
 
 /** Content - Replaceable per page */
