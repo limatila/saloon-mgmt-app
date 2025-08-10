@@ -1,0 +1,16 @@
+{% extends "common/base.html" %}
+
+{% block title %}Workers{% endblock title %}
+
+{% block head %}
+    <style>
+        .view{
+            height: 90%;
+        }
+    </style>
+{% endblock head %}
+
+{% block content %}
+<!-- Workers Render -->
+    {% include "components/workers-view.html" %}
+{% endblock content %}

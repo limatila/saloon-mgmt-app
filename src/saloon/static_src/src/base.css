@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 /**
+  *? Django-Tailwind generated.
   * A catch-all path to Django template files, JavaScript, and Python files
   * that contain Tailwind CSS classes and will be scanned by Tailwind to generate the final CSS file.
   *
@@ -22,7 +23,7 @@ body, html{
   @apply rounded-none;
   @apply w-screen h-screen;
   @apply max-w-screen;
-  @apply overflow-auto; /* !DEBUG */
+  @apply overflow-auto;
 }
 body{
   @apply flex flex-col h-full;
@@ -30,7 +31,7 @@ body{
 
 /* Fonts */
 h1, h2, h3{
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif, Verdana;
   @apply font-bold;
 }
 h1{
@@ -42,9 +43,8 @@ h2{
 h3{
   @apply text-xl;
 }
-p, span, li{
-  @apply font-light;
-  font-family: 'Open Sans', sans-serif;
+p, span, td{
+  @apply font-sans;
 }
 
 /** Divs */
@@ -55,13 +55,12 @@ a{
   text-decoration: none;
 }
 button{
-  @apply scale-[155%];
   @apply transition-transform duration-100;
-}
+} /* TODO finish transition */
 
 /** position at middle */
 .wrapper{
-  @apply m-auto w-2/3 p-0;
+  @apply m-auto w-3/4 p-0;
   @apply mt-0 mb-0;
 }
 
@@ -70,22 +69,32 @@ header {
   @apply rounded-t-none;
   @apply bg-pink-500;
   @apply w-full h-20 top-0;
+  & div.wrapper{
+    @apply text-white;
+  }
 }
 .header-content{
   @apply flex justify-between items-center;
   @apply h-full;
 }
+.header-title{
+  @apply flex items-center;
+  & img, h1{
+    @apply inline;
+  }
+}
 #mgmt-title{
   @apply hidden;
   @apply lg:inline;
+  @apply font-light;
 }
 
-/* Content - Replaceable per page */
+/** Content - Replaceable per page */
 section.main-content{
   @apply flex grow;
 }
 
-/* Footer */
+/** Footer */
 footer {
   @apply rounded-b-none;
   @apply bg-pink-700 text-white;

@@ -4,22 +4,24 @@
         <thead>
             <tr class="bg-pink-200">
                 <th>Name</th>
-                <th>Price</th>
-                <th>Status</th>
                 <th>Schedule</th>
+                <th>Status</th>
+                <th>Service</th>
+                <th>Price</th>
             </tr>
         </thead>
         <tbody>
             {% for item in appointments %}
                 <tr class="hover:bg-gray-50">
                     <td>{{ item.name }}</td>
-                    <td>{{ item.price }}</td>
-                    <td>{{ item.status }}</td>
                     <td>{{ item.schedule_datetime }}</td>
+                    <td>{{ item.status }}</td>
+                    <td>{{ item.service }}</td>
+                    <td>{{ item.price }}</td>
                 </tr>
             {% empty %}
                 <tr>
-                    <td colspan="4" class="py-4 text-gray-500">No appointments found.<br> Please add it at 'schedule appointment'!</td>
+                    <td colspan="10" class="py-4 text-gray-500">No appointments found.<br> Please add it at 'schedule appointment'!</td>
                 </tr>
             {% endfor %}
         </tbody>

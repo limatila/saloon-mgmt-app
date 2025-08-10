@@ -2,10 +2,10 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 
-def redirectHome(request):
+def REDIRECT_HOME(request):
     return redirect('home')
 
-def home(request, base: bool = False):
+def HOME(request, base: bool = False):
     title: str = "Home"
     if base: title = "Base"
     return render(request, 'pages/home.html', 
@@ -16,5 +16,23 @@ def home(request, base: bool = False):
                         }
             )
 
-def base(request):
-    return home(request, True)
+def APPOINTMENTS(request):
+    title: str = "Appointments"
+    return render(request, 'pages/appointments.html', 
+                        context={
+                            'childRender': True,
+                            'title': title
+                        }
+            )
+
+def WORKERS(request):
+    title: str = "Workers"
+    return render(request, 'pages/workers.html', 
+                        context={
+                            'childRender': True,
+                            'title': title
+                        }
+            )
+
+def BASE(request):
+    return HOME(request, True)
