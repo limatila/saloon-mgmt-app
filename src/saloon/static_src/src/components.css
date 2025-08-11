@@ -8,7 +8,7 @@
   @apply border-2 border-pink-300 rounded-2xl;
 }
 
-/* Appointments-view (table) */
+/** Appointments-view (table) */
 div.appointments-view{
   @apply overflow-x-auto;
   & table{
@@ -27,7 +27,7 @@ div.appointments-view{
   }
 }
 
-/* Workers-view (grid) */
+/** Workers-view (grid) */
 div.workers-view{
   @apply overflow-auto;
   & div.grid{
@@ -68,8 +68,20 @@ div.workers-view div.grid div.worker > * {
     @apply basis-1/4 flex-shrink-0;
 }
 
-/* custom screen sizes */
+/* custom screen size */
 @media screen and (max-width: 490px ) {
+    div.workers-view div.grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/** daily view (simple flexbox) */
+.daily-view h2{
+  @apply max-sm:text-[0.6rem] max-lg:text-lg
+}
+
+/* custom screen height */
+@media screen and (max-height: 490px ) {
     div.workers-view div.grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }

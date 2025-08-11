@@ -81,6 +81,9 @@
 .flex-col {
   flex-direction: column;
 }
+.justify-around {
+  justify-content: space-around;
+}
 .justify-evenly {
   justify-content: space-evenly;
 }
@@ -181,6 +184,8 @@
     --spacing: 0.25rem;
     --text-sm: 0.875rem;
     --text-sm--line-height: calc(1.25 / 0.875);
+    --text-lg: 1.125rem;
+    --text-lg--line-height: calc(1.75 / 1.125);
     --text-xl: 1.25rem;
     --text-xl--line-height: calc(1.75 / 1.25);
     --text-2xl: 1.5rem;
@@ -380,12 +385,12 @@ body {
 }
 h1, h2, h3 {
   font-family: 'Montserrat', sans-serif, Verdana;
-  --tw-font-weight: var(--font-weight-bold);
-  font-weight: var(--font-weight-bold);
 }
 h1 {
   font-size: var(--text-3xl);
   line-height: var(--tw-leading, var(--text-3xl--line-height));
+  --tw-font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-bold);
 }
 h2 {
   font-size: var(--text-2xl);
@@ -474,6 +479,8 @@ header {
   }
   --tw-font-weight: var(--font-weight-light);
   font-weight: var(--font-weight-light);
+  font-size: var(--text-3xl);
+  line-height: var(--tw-leading, var(--text-3xl--line-height));
 }
 #nav-bar {
   display: flex;
@@ -790,6 +797,20 @@ div.workers-view div.grid div.worker > * {
   flex-basis: calc(1/4 * 100%);
 }
 @media screen and (max-width: 490px ) {
+  div.workers-view div.grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.daily-view h2 {
+  @media (width < 64rem) {
+    font-size: var(--text-lg);
+    line-height: var(--tw-leading, var(--text-lg--line-height));
+  }
+  @media (width < 40rem) {
+    font-size: 0.6rem;
+  }
+}
+@media screen and (max-height: 490px ) {
   div.workers-view div.grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }

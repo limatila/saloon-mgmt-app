@@ -32,10 +32,10 @@ body{
 /* Fonts */
 h1, h2, h3{
   font-family: 'Montserrat', sans-serif, Verdana;
-  @apply font-bold;
 }
 h1{
   @apply text-3xl;
+  @apply font-bold;
 }
 h2{
   @apply text-2xl;
@@ -97,6 +97,7 @@ header {
   @apply hidden;
   @apply lg:inline;
   @apply font-light;
+  @apply text-3xl;
 }
 
 /** Nav bar at Header */
