@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 # Create your models here.
 #* Parent classes
@@ -14,17 +15,24 @@ class Person(baseModel):
     class Meta:
         abstract = True
 
+    def __str__(self):
+        return f"{self.id} - {self.name}"
+
 #* Registered
 class Client(Person):
     phone_number = models.CharField(max_length=16, null=False, blank=False)
 
 class Worker(Person):
     active = models.BooleanField(default=True, null=False, blank=False)
+    image = models.ImageField(default="placeholder.jpg", null=False, blank=False, upload_to="worker-photos/", editable=True)
 
 class Service(baseModel):
     name = models.CharField(max_length=50, null=False, blank=False)
     price = models.DecimalField(decimal_places=2, max_digits=5, null=False, blank=False)
 
+    def __str__(self):
+        return f"{self.name} - for R${self.price:.2f}"
+    
 #? intermediary tables
 class Appointment(baseModel):
     class appointmentStatus(models.TextChoices):
@@ -40,6 +48,9 @@ class Appointment(baseModel):
     client = models.ForeignKey(Client, null=True, on_delete=models.SET_NULL)
     worker = models.ForeignKey(Worker, null=True, on_delete=models.SET_NULL)
     service = models.ForeignKey(Service, null=True, on_delete=models.SET_NULL)
+    
+    def __str__(self):
+        return f"{self.client.name} at {self.date_scheduled.date()}"
 
 class Payment(baseModel):
     value = models.DecimalField(decimal_places=2, max_digits=5, null=False, blank=False)
