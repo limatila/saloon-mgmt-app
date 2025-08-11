@@ -1,3 +1,49 @@
 from django.db import models
 
 # Create your models here.
+#* Parent classes
+class baseModel(models.Model):
+    id = models.AutoField(primary_key=True)
+    date_created = models.DateTimeField(auto_now_add=True, editable=False)
+    class Meta:
+        abstract = True
+
+class Person(baseModel):
+    name = models.CharField(max_length=255, null=False, blank=False)
+    CPF = models.CharField(max_length=11, null=False, blank=False)          # all digits
+    class Meta:
+        abstract = True
+
+#* Registered
+class Client(Person):
+    phone_number = models.CharField(max_length=16, null=False, blank=False)
+
+class Worker(Person):
+    active = models.BooleanField(default=True, null=False, blank=False)
+
+class Service(baseModel):
+    name = models.CharField(max_length=50, null=False, blank=False)
+    price = models.DecimalField(decimal_places=2, max_digits=5, null=False, blank=False)
+
+#? intermediary tables
+class Appointment(baseModel):
+    class appointmentStatus(models.TextChoices):
+        ONGOING = 'O', 'Ongoing'
+        FINISHED = 'F', 'Finished'
+        PAID = 'P', 'Paid'
+        CANCELLED = 'C', 'Cancelled'
+
+    status = models.CharField(choices=appointmentStatus.choices, default=appointmentStatus.ONGOING, null=False)
+    date_scheduled = models.DateTimeField(null=False, blank=False)
+
+    #FKs
+    client = models.ForeignKey(Client, null=True, on_delete=models.SET_NULL)
+    worker = models.ForeignKey(Worker, null=True, on_delete=models.SET_NULL)
+    service = models.ForeignKey(Service, null=True, on_delete=models.SET_NULL)
+
+class Payment(baseModel):
+    value = models.DecimalField(decimal_places=2, max_digits=5, null=False, blank=False)
+
+    #FKs
+    client = models.ForeignKey(Client, null=True, on_delete=models.SET_NULL)
+    appointment = models.ForeignKey(Appointment, null=True, on_delete=models.SET)
