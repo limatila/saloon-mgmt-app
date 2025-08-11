@@ -4,13 +4,18 @@
 
 {% block content %}
 <!-- Home Render -->
-    <div class="daily-view view">
-        {% comment %}
-            display a flash of important info including:
-            quantity of appointments in the next hour
-            quantity of appointments concluded in the day
-            quantity of appointments
-        {% endcomment %}
+    <div class="daily-view view overflow-y-auto">
+        <h2>
+           You have {{ qtt_ongoing_hour }} pending scheduled to the next hour.
+        </h2>
+        <hr>
+        <h2>
+           You have finished <b>{{ qtt_finished_today }}</b> pending scheduled to the next hour.
+        </h2>
+        <hr>
+        <h2>
+           You have <b>{{ value_revenue_today }}</b> of total revenue today.
+        </h2>
     </div>
 
     {% include "components/appointments-view.html" %}

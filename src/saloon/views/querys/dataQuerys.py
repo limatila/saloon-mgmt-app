@@ -90,4 +90,7 @@ def load_value_revenue_today() -> Decimal:
 
     totalRevenue: Decimal = 0.00
     for appointment in resultsFinished:
-        totalRevenue += appointment.service.value
+        if appointment.service:
+            totalRevenue += appointment.service.value
+    
+    return totalRevenue
