@@ -24,7 +24,7 @@ class Client(Person):
 
 class Worker(Person):
     active = models.BooleanField(default=True, null=False, blank=False)
-    image = models.ImageField(default="placeholder.jpg", null=False, blank=False, upload_to="worker-photos/", editable=True)
+    image = models.ImageField(default="placeholder.jpg", null=True, blank=True, upload_to="worker-photos/", editable=True)
 
 class Service(baseModel):
     name = models.CharField(max_length=50, null=False, blank=False)
@@ -32,7 +32,7 @@ class Service(baseModel):
 
     def __str__(self):
         return f"{self.name} - for R${self.price:.2f}"
-    
+
 #? intermediary tables
 class Appointment(baseModel):
     class appointmentStatus(models.TextChoices):

@@ -3,10 +3,27 @@
         {% for item in workers %}
             {% comment %} max 12 in home {% endcomment %}
             <div class="worker">
-                <img src={{ item.photo.url }} title="{{ worker.name }}" alt="photo of {{ worker.name }}">
-                <div class="eliminable"><span>{{ worker.name }}</span></div>
-                <div title="Active and Pending schedules"><span><img src="https://cdn-icons-png.flaticon.com/24/10593/10593542.png" alt="icon">{{ worker_active_schedules }}</span></div>
-                <div class="eliminable"><span>{{ worker_done_schedules }}</span></div>
+                <img src="{{ item.image.url }}" title="{{ item.name }}" alt="photo of {{ item.name }}">
+
+                {% comment %} Worker informations dashboard {% endcomment %}
+                <div class="eliminable" title="Worker's name">
+                    <span>
+                        <img src="https://cdn-icons-png.flaticon.com/128/10593/10593542.png" alt="icon">
+                        {{ item.name }}
+                    </span>
+                </div>
+                <div title="Active and Pending schedules">
+                    <span>
+                        <img src="https://cdn-icons-png.flaticon.com/128/5482/5482788.png" alt="icon">
+                        {{ item.ongoing_schedules }} pending
+                    </span>
+                    </div>
+                <div class="eliminable" title="Finished schedules today">
+                    <span>
+                        <img src="https://cdn-icons-png.flaticon.com/128/4436/4436481.png" alt="icon">
+                        {{ item.finished_schedules }} finished
+                    </span>
+                </div>
             </div>
         {% endfor %}
     </div>
