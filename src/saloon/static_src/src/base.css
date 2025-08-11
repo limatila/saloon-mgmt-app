@@ -44,7 +44,11 @@ h3{
   @apply text-xl;
 }
 p, span, td{
+  @apply text-sm; 
   @apply font-sans;
+}
+button{
+  @apply font-sans font-semibold;
 }
 
 /** Divs */
