@@ -45,22 +45,22 @@ def load_data_range(modelOption: str, range: int = 15, offset: int = 0) -> list[
             pass
 
     if range == 0:
-        results = model.objects.all()
+        results = model.objects.order_by("-id").all()
     else:
         limit: int = range + offset
-        results = model.objects.all()[offset:limit]
+        results = model.objects.order_by("-id").all()[offset:limit]
 
     return results
 
 #* Relational data per demand
+#appointments - home view
 def load_all_appointments_today() -> list[models.Appointment]:
-    today = datetime.now()
-    end = today + timedelta(hours=23, minutes=59, seconds=59)
+    today = date.today()
     return models.Appointment.objects.filter(
-        date_scheduled__gte=today,
-        date_scheduled__lt=end,
-    ).all()
+        date_scheduled__date=today
+    ).order_by("-date_scheduled")
 
+#daily view
 def load_ongoing_appointments_next_hour() -> int:
     start = datetime.now()
     end = start + timedelta(hours=1)
@@ -71,26 +71,25 @@ def load_ongoing_appointments_next_hour() -> int:
     ).all().count()
 
 def load_finished_appointments_today() -> int:
-    today = datetime.now()
-    end = today + timedelta(hours=23, minutes=59, seconds=59)
+    today = date.today()
     return models.Appointment.objects.filter(
-        date_scheduled__gte=today,
-        date_scheduled__lt=end,
-        status=models.Appointment.appointmentStatus.FINISHED
+        date_scheduled__date=today,
+        status__in=[
+            models.Appointment.appointmentStatus.FINISHED,
+            models.Appointment.appointmentStatus.PAID
+        ]
     ).all().count()
 
-def load_value_revenue_today() -> Decimal:
-    today = datetime.now()
-    end = today + timedelta(hours=23, minutes=59, seconds=59)
+def load_revenue_today() -> Decimal:
+    today = date.today()
     resultsFinished = models.Appointment.objects.filter(
-        date_scheduled__gte=today,
-        date_scheduled__lt=end,
-        status=models.Appointment.appointmentStatus.FINISHED
+        date_scheduled__date=today,
+        status__in=models.Appointment.appointmentStatus.PAID
     ).all()
 
-    totalRevenue: Decimal = 0.00
+    totalRevenue = Decimal(0.00)
     for appointment in resultsFinished:
         if appointment.service:
-            totalRevenue += appointment.service.value
+            totalRevenue += appointment.service.price
     
     return totalRevenue

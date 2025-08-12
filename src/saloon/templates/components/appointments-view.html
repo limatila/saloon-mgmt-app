@@ -8,20 +8,34 @@
                 <th>Status</th>
                 <th>Service</th>
                 <th>Price</th>
+                {% if title != 'Home' %}
+                    <th>Client number</th>
+                    <th>Assigned Worker</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
             {% for item in appointments %}
                 <tr class="hover:bg-gray-50">
-                    <td>{{ item.name }}</td>
-                    <td>{{ item.schedule_datetime }}</td>
-                    <td>{{ item.status }}</td>
-                    <td>{{ item.service }}</td>
-                    <td>{{ item.price }}</td>
+                    <td>{{ item.client.name }}</td>
+                    <td>
+                        {% if title == 'Home' %}
+                            {{ item.date_scheduled|time:"H:i" }}
+                        {% else %}
+                            {{ item.date_scheduled|date:"d/M/Y H:i" }}
+                        {% endif %}
+                    </td>
+                    <td>{{ item.get_status_display }}</td>
+                    <td>{{ item.service.name }}</td>
+                    <td class="whitespace-nowrap text-nowrap">R$ {{ item.service.price }}</td>
+                    {% if title != 'Home' %}
+                        <td>{{ item.client.phone_number|default:"Not registered" }}</td>
+                        <td>{{ item.worker.name }}</td>
+                    {% endif %}
                 </tr>
             {% empty %}
                 <tr>
-                    <td colspan="10" class="py-4 text-gray-500">No appointments found.<br> Please add it at 'schedule appointment'!</td>
+                    <td colspan="1000" class="py-4 text-gray-500">No appointments found.<br> Please add it at 'schedule appointment'!</td>
                 </tr>
             {% endfor %}
         </tbody>

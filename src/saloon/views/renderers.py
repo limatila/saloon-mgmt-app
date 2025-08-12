@@ -23,7 +23,7 @@ def HOME(request, base: bool = False):
                         'appointments': dataQuerys.load_all_appointments_today(),
                         'qtt_ongoing_hour': dataQuerys.load_ongoing_appointments_next_hour(),
                         'qtt_finished_today': dataQuerys.load_finished_appointments_today(),
-                        'value_revenue_today': dataQuerys.load_value_revenue_today(),
+                        'value_revenue_today': dataQuerys.load_revenue_today(),
                     }
             )
 
