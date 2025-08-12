@@ -1,4 +1,7 @@
 <div class="appointments-view view">
+    {% if title == 'Home' %}
+        <h1>Appointments of the day</h1>
+    {% endif %}
     <table>
         {% comment %} display small list view of all appointments w/ data {% endcomment %}
         <thead>

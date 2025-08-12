@@ -1,4 +1,7 @@
 <div class="workers-view view">
+    {% if title == 'Home' %}
+        <h1>Workers available</h1>
+    {% endif %}
     <div class="grid">
         {% for item in workers %}
             {% comment %} max 12 in home {% endcomment %}
