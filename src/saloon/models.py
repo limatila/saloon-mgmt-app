@@ -18,14 +18,6 @@ class Person(baseModel):
 
     def __str__(self):
         return f"{self.id} - {self.name}"
-    
-    def save(self):
-        validator = CPF()
-        if not validator.validate(self.CPF):
-            raise ValueError("CPF is not valid")
-        else:
-            #then
-            super().save()
 
 #* Registered
 class Client(Person):

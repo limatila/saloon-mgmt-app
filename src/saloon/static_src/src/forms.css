@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+.form-view{
+    @apply max-w-md mx-auto bg-white p-6;
+    @apply h-fit!;
+    & form{
+        @apply h-full flex flex-col;
+        & section.form-section{
+            @apply mb-5;
+            & h2{
+                @apply font-semibold;
+            }
+            & div.form-field{
+                @apply mb-3;
+                & p.error-message{
+                    @apply text-red-600 text-sm;
+                }
+            }
+        }
+        & div.form-submit{
+            @apply flex gap-2 w-fit place-self-end;
+            & button[type="submit"]{
+                @apply px-4 py-2 bg-blue-600 text-white;
+            }
+            & a[href$="home"]{
+                @apply px-4 py-2 border;
+            }
+        }
+    }
+}

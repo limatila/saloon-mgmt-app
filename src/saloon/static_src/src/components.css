@@ -6,6 +6,7 @@
   @apply max-w-full;
   @apply p-2;
   @apply border-2 border-pink-300 rounded-2xl;
+  @apply shadow-lg;
 }
 
 /** Appointments-view (table) */

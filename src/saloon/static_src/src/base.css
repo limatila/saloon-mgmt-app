@@ -50,6 +50,9 @@ p, span, td{
 button{
   @apply font-sans font-semibold;
 }
+form{
+  @apply font-sans;
+}
 
 /** Divs */
 h1, h2, h3, p, span, li, button{
@@ -58,9 +61,6 @@ h1, h2, h3, p, span, li, button{
 a{
   text-decoration: none;
 }
-button{
-  @apply transition-transform duration-100;
-} /* TODO finish transition */
 
 /** position at middle */
 .wrapper{
@@ -72,7 +72,7 @@ button{
 header {
   @apply rounded-t-none;
   @apply bg-pink-500;
-  @apply w-full h-20 top-0;
+  @apply w-full h-15 top-0;
   & div.wrapper{
     @apply text-white;
   }
@@ -125,7 +125,7 @@ section.main-content{
 footer {
   @apply rounded-b-none;
   @apply bg-pink-700 text-white;
-  @apply w-full h-[5rem];
+  @apply w-full h-[3rem];
   @apply z-[900];
 }
 #footer-nav-bar{

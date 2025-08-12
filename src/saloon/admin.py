@@ -16,7 +16,7 @@ class ServicesAdmin(admin.ModelAdmin):
 #? intermediary tables
 @admin.register(Appointment)
 class AppointmentsAdmin(admin.ModelAdmin):
-    pass
+    list_filter = ('status', 'worker', 'service')
 @admin.register(Payment)
 class PaymentsAdmin(admin.ModelAdmin):
-    pass
+    list_filter = ('appointment', 'client')

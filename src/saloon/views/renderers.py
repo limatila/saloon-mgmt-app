@@ -4,7 +4,7 @@ from saloon.views.querys import dataQuerys, formQuerys
 
 # Create your views here.
 
-#Rediractions
+#Redirections
 def REDIRECT_HOME(request):
     return redirect('home')
 def REDIRECT_ADMIN(request):
@@ -12,7 +12,7 @@ def REDIRECT_ADMIN(request):
 def BASE(request):
     return HOME(request, True)
 
-#Render
+#Renders
 def HOME(request, base: bool = False):
     title: str = "Home"
     if base: title = "Base"
@@ -51,4 +51,18 @@ def WORKERS(request):
             )
 
 def REGISTRATION_APPOINTMENTS(request): 
-    return render(request, "pages/clients/schedule-appointments.html")
+    title: str = "Schedule an Appointment"
+    formResult = formQuerys.create_client_and_appointment(request)
+    if formResult is True: 
+        return REDIRECT_HOME(request)
+    elif isinstance(formResult, dict): 
+        return render(request, "pages/clients/schedule-appointments.html",
+                    context={
+                        'childRender': True,
+                        'title': title,
+                        'client_form': formResult['client_form'],
+                        'appointment_form': formResult['appointment_form'],
+                    }
+            )
+    else:
+        raise Exception("formResult did not returned a sufficient value")
