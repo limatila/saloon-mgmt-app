@@ -25,7 +25,7 @@ NPM_BIN_PATH = Path(r'C:\Program Files\nodejs\npm.cmd')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 #define this at your '.env' file
 SECRET_KEY = dotenv.get_key('.env', 'SECRET_KEY')
