@@ -140,3 +140,6 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'static' / 'media'
 
 MEDIA_DEFAULT_SRC = "https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ="
+
+#format for templates
+SHORT_DATE_FORMAT = "d of m Y at H:i" #10 of Aug 2025 at 20:12
