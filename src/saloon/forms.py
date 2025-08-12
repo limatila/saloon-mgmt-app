@@ -14,6 +14,7 @@ class ClientForm(forms.ModelForm):
             'phone_number': forms.TextInput(attrs={'class': 'rounded border p-2', 'placeholder': "+55 85 ...."}),
         }
     
+    #Validation
     def clean_CPF(self):
         cpf = self.cleaned_data.get('CPF')
         validator = CPF()
@@ -25,12 +26,12 @@ class AppointmentForm(forms.ModelForm):
     date_scheduled = forms.DateTimeField(
         widget=forms.DateTimeInput(
             attrs={
-                'type': 'datetime-local',
+                'type': 'datetime-local', #for widget use, only HTML / ISO format
                 'class': 'rounded border p-2',
             },
-            format='%d/%m/%Y %H:%M'  # match datetime-local
+            format='%Y-%m-%dT%H:%M'
         ),
-        input_formats=['%d/%m/%Y %H:%M', '%Y-%m-%d %H:%M'],
+        input_formats=['%Y-%m-%dT%H:%M']
     )
 
     class Meta:
@@ -42,7 +43,8 @@ class AppointmentForm(forms.ModelForm):
             'status': forms.Select(attrs={'class': 'rounded border p-2'}),
         }
 
-    def clean_schedule(self): #TODO check if it's being called.
+    #Validation
+    def clean_date_scheduled(self):
         schedule = self.cleaned_data.get('date_scheduled')
         if schedule and schedule < datetime.now():
             raise forms.ValidationError("Scheduled time must be in the future.")

@@ -26,7 +26,7 @@ def create_client_and_appointment(request) -> dict[str, ClientForm | Appointment
             # if client loading in form / client inserted invalid values
             initial_dt = (
                 datetime.now().replace(second=0, minute=0) + timedelta(hours=1)
-                ).strftime('%d/%m/%Y %H:%M')
+                ).strftime('%Y-%m-%dT%H:%M')
             forms = {
                 'client_form': ClientForm(),
                 'appointment_form': AppointmentForm(initial={'date_scheduled': initial_dt}),
