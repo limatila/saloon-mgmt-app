@@ -1,24 +1,26 @@
 <nav id="nav-bar">
-    {% if title != "Home" %}
-        <button><a href="{% url "home" %}">
-            Home
-        </a></button>                    
-    {% endif %}
-    {% if title != "Workers" %}
-    <button><a href="{% url "workers" %}">
-        Workers
-    </a></button>
-    {% endif %}
-    {% comment %} TODO finish clients page
-        {% if title != "Clients" %}
-            <button><a href="{% url "clients" %}">
-                Clients
+    {% if title != "Schedule an Appointment" %}
+        {% if title != "Home" %}
+            <button><a href="{% url "home" %}">
+                Home
+            </a></button>                    
+        {% endif %}
+        {% if title != "Workers" %}
+        <button><a href="{% url "workers" %}">
+            Workers
+        </a></button>
+        {% endif %}
+        {% comment %} TODO finish clients page
+            {% if title != "Clients" %}
+                <button><a href="{% url "clients" %}">
+                    Clients
+                </a></button>
+            {% endif %}
+        {% endcomment %}
+        {% if title != "Appointments" %}
+            <button><a href="{% url "appointments" %}">
+                Appointments
             </a></button>
         {% endif %}
-    {% endcomment %}
-    {% if title != "Appointments" %}
-        <button><a href="{% url "appointments" %}">
-            Appointments
-        </a></button>
     {% endif %}
 </nav>
