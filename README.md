@@ -7,10 +7,10 @@ A small Django project for managing workers, appointments and payments with a Ta
 
 ## Quick overview
 
-- Backend: **Django** (Python)
-- Styling: **TailwindCSS** integrated via **django-tailwind**
-- DB: **SQLite** (`db.sqlite3`) (local)
-- Development: Authorization, Data management and edition, and Payments section yet in TODO
+- 💻 Backend: **Django** (Python)
+- 🎨 Styling: **TailwindCSS** integrated via **django-tailwind**
+- 📄 DB: **SQLite** (`db.sqlite3`) (local)
+- 🚀 Development status: Authorization, Data management and edition, and Payments section yet in TODO
 
 
 
