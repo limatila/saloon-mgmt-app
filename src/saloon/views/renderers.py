@@ -4,12 +4,15 @@ from saloon.views.querys import dataQuerys, formQuerys
 
 # Create your views here.
 
+#Rediractions
 def REDIRECT_HOME(request):
     return redirect('home')
-
+def REDIRECT_ADMIN(request):
+    return redirect('admin')
 def BASE(request):
     return HOME(request, True)
 
+#Render
 def HOME(request, base: bool = False):
     title: str = "Home"
     if base: title = "Base"
@@ -46,3 +49,6 @@ def WORKERS(request):
                         'workers': dataQuerys.load_data_range('worker', range=0),
                     }
             )
+
+def REGISTRATION_APPOINTMENTS(request): 
+    return render(request, "pages/clients/schedule-appointments.html")

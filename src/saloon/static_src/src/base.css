@@ -128,7 +128,7 @@ footer {
   @apply w-full h-[5rem];
   @apply z-[900];
 }
-.footer-content{
+#footer-nav-bar{
   @apply flex justify-between items-center;
   @apply h-full;
 }

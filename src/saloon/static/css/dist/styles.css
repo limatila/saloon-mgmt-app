@@ -542,7 +542,7 @@ footer {
   width: 100%;
   z-index: 900;
 }
-.footer-content {
+#footer-nav-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
