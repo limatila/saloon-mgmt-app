@@ -21,19 +21,19 @@
     <body class="bg-gray-50 text-black font-serif leading-normal tracking-normal">
         <header>
             <div class="wrapper header-content">
-                <div class="header-title">
+                <a class="header-title" href="{% url "home" %}">
                     <img src="{% static "imgs/icons/kiss.png" %}" alt="saloon icon" width="32" height="auto">
                     <h1>
                         {{ title }}<span id="mgmt-title"> - Saloon Management</span>
                     </h1>
-                </div>
+                </a>
                 {% include "common/nav-bar.html" %}
             </div>
         </header>
 
         <section class="main-content">
             <div class="wrapper flex flex-col justify-evenly container">
-                {% if baseRender %}
+                {% if baseRender or not childRender %}
                     <h2 class="place-self-center">Django + Tailwind = ❤️</h2>
                 {% elif childRender %}
                     {% block content %}
