@@ -39,10 +39,10 @@
             {% empty %}
                 <tr>
                     <td colspan="1000" class="py-4 text-gray-500">No appointments found.<br> Please add it at
-                        <button class="animate-bounce hover:animate-none text-blue-600 hover:scale-150">
-                        <a href="{% url "schedule-appointment" %}">
-                            here
-                        </a>
+                        <button class="animate-bounce hover:animate-none text-blue-600 hover:scale-150 transition-transform duration-150">
+                            <a href="{% url "schedule-appointment" %}">
+                                here
+                            </a>
                         </button>
                     </td>
                 </tr>

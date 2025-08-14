@@ -72,12 +72,6 @@
 .table-cell {
   display: table-cell;
 }
-.h-full {
-  height: 100%;
-}
-.w-full {
-  width: 100%;
-}
 .transform {
   transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
 }
@@ -175,6 +169,20 @@
 }
 .filter {
   filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+}
+.transition-all {
+  transition-property: all;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+}
+.transition-transform {
+  transition-property: transform, translate, scale, rotate;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+}
+.duration-150 {
+  --tw-duration: 150ms;
+  transition-duration: 150ms;
 }
 .hover\:scale-150 {
   &:hover {
@@ -1214,6 +1222,10 @@ div.workers-view div.grid div.worker > * {
   syntax: "*";
   inherits: false;
 }
+@property --tw-duration {
+  syntax: "*";
+  inherits: false;
+}
 @property --tw-scale-x {
   syntax: "*";
   inherits: false;
@@ -1230,10 +1242,6 @@ div.workers-view div.grid div.worker > * {
   initial-value: 1;
 }
 @property --tw-font-weight {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-duration {
   syntax: "*";
   inherits: false;
 }
@@ -1305,11 +1313,11 @@ div.workers-view div.grid div.worker > * {
       --tw-drop-shadow-color: initial;
       --tw-drop-shadow-alpha: 100%;
       --tw-drop-shadow-size: initial;
+      --tw-duration: initial;
       --tw-scale-x: 1;
       --tw-scale-y: 1;
       --tw-scale-z: 1;
       --tw-font-weight: initial;
-      --tw-duration: initial;
     }
   }
 }
