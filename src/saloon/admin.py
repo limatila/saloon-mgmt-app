@@ -11,7 +11,7 @@ class WorkersAdmin(admin.ModelAdmin):
     pass
 @admin.register(Service)
 class ServicesAdmin(admin.ModelAdmin):
-    pass
+    list_filter = ('type', )
 
 #? intermediary tables
 @admin.register(Appointment)

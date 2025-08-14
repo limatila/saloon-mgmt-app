@@ -27,8 +27,13 @@ class Worker(Person):
     image = models.ImageField(default="placeholder.jpg", null=True, blank=True, upload_to="worker-photos/", editable=True)
 
 class Service(baseModel):
+    class serviceType(models.TextChoices):
+        HAIR = 'H', 'Hair'
+        LASH_STYLING = 'L', 'Lash Styling and Design'
+
     name = models.CharField(max_length=50, null=False, blank=False)
     price = models.DecimalField(decimal_places=2, max_digits=5, null=False, blank=False)
+    type = models.CharField(choices=serviceType.choices, default=serviceType.HAIR, null=False, blank=False)
 
     def __str__(self):
         return f"{self.name} - for R${self.price:.2f}"
@@ -41,7 +46,7 @@ class Appointment(baseModel):
         PAID = 'P', 'Paid'
         CANCELLED = 'C', 'Cancelled'
 
-    status = models.CharField(choices=appointmentStatus.choices, default=appointmentStatus.ONGOING, null=False)
+    status = models.CharField(choices=appointmentStatus.choices, default=appointmentStatus.ONGOING, null=False, blank=False)
     date_scheduled = models.DateTimeField(null=False, blank=False)
 
     #FKs
