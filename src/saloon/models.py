@@ -1,6 +1,5 @@
 from django.db import models
 from django.conf import settings
-from validate_docbr import CPF
 
 # Create your models here.
 #* Parent classes
@@ -12,7 +11,7 @@ class baseModel(models.Model):
 
 class Person(baseModel):
     name = models.CharField(max_length=255, null=False, blank=False)
-    CPF = models.CharField(max_length=11, null=False, blank=False)          # all digits
+    CPF = models.CharField(max_length=11, null=False, blank=False, unique=True)          # all digits
     class Meta:
         abstract = True
 
@@ -21,7 +20,7 @@ class Person(baseModel):
 
 #* Registered
 class Client(Person):
-    phone_number = models.CharField(max_length=16, null=False, blank=False)
+    phone_number = models.CharField(max_length=16, null=False, blank=False, unique=True)
 
 class Worker(Person):
     active = models.BooleanField(default=True, null=False, blank=False)

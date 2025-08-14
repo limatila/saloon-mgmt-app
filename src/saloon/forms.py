@@ -10,10 +10,10 @@ class ClientForm(forms.ModelForm):
         fields = ['name', 'CPF', 'phone_number']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'rounded border p-2', 'placeholder': "nome de sobrenome"}),
-            'CPF': forms.TextInput(attrs={'class': 'rounded border p-2', 'placeholder': "XXX.XXX.XXX-xx"}),
-            'phone_number': forms.TextInput(attrs={'class': 'rounded border p-2', 'placeholder': "+55 85 ...."}),
+            'CPF': forms.TextInput(attrs={'max-length': 14, 'class': 'rounded border p-2', 'placeholder': "XXX.XXX.XXX-xx"}),
+            'phone_number': forms.TextInput(attrs={'max-length': 21, 'class': 'rounded border p-2', 'placeholder': "+55 85 ...."}),
         }
-    
+
     #Validation
     def clean_CPF(self):
         cpf = self.cleaned_data.get('CPF')
@@ -21,6 +21,18 @@ class ClientForm(forms.ModelForm):
         if not validator.validate(cpf):
             raise forms.ValidationError("CPF is not valid")
         return cpf
+
+    def clean_phone_number(self):
+        number: str = self.cleaned_data.get('phone_number')
+        charsToRemove = [' ', '+', '(', ')']
+        if not number.startswith('+'):
+            raise forms.ValidationError('Phone number must start with \'+\'')
+        for char in charsToRemove:
+            number = number.replace(char, '')
+        return number
+    
+    def validate_unique(self):
+        pass
 
 class AppointmentForm(forms.ModelForm):
     date_scheduled = forms.DateTimeField(

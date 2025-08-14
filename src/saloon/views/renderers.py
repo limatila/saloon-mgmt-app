@@ -52,7 +52,7 @@ def WORKERS(request):
 
 def REGISTRATION_APPOINTMENTS(request): 
     title: str = "Schedule an Appointment"
-    formResult = formQuerys.create_client_and_appointment(request)
+    formResult = formQuerys.register_client_and_appointment(request)
     if formResult is True: 
         return REDIRECT_HOME(request)
     elif isinstance(formResult, dict): 

@@ -3,16 +3,23 @@ from datetime import datetime, timedelta
 
 from saloon.forms import *
 
-def create_client_and_appointment(request) -> dict[str, ClientForm | AppointmentForm] | bool:
+def register_client_and_appointment(request) -> dict[str, ClientForm | AppointmentForm] | bool:
     match(request.method):
         case 'POST':
             #form submitted
             client_form = ClientForm(request.POST)
             appointment_form = AppointmentForm(request.POST)
-
             if client_form.is_valid() and appointment_form.is_valid():
-                client = client_form.save()
-
+                clientData = client_form.cleaned_data
+                cpf, number = clientData.get('CPF'), clientData.get('phone_number')
+                client_cpf = Client.objects.filter(CPF=cpf).first()
+                client_phone = Client.objects.filter(phone_number=number).first()
+                if client_cpf:
+                    client = client_cpf
+                elif client_phone:
+                    client = client_phone
+                else:
+                    client = client_form.save()
                 appointment = appointment_form.save(commit=False)
                 appointment.client = client
                 appointment.save()
@@ -31,5 +38,5 @@ def create_client_and_appointment(request) -> dict[str, ClientForm | Appointment
                 'client_form': ClientForm(),
                 'appointment_form': AppointmentForm(initial={'date_scheduled': initial_dt}),
             }
-        
+
     return forms
