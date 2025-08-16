@@ -11,7 +11,7 @@ class baseModel(models.Model):
 
 class Person(baseModel):
     name = models.CharField(max_length=255, null=False, blank=False)
-    CPF = models.CharField(max_length=11, null=False, blank=False, unique=True)          # all digits
+    CPF = models.CharField(max_length=14, null=False, blank=False, unique=True)          # all digits
     class Meta:
         abstract = True
 
@@ -20,7 +20,7 @@ class Person(baseModel):
 
 #* Registered
 class Client(Person):
-    phone_number = models.CharField(max_length=16, null=False, blank=False, unique=True)
+    phone_number = models.CharField(max_length=21, null=False, blank=False, unique=True)
 
 class Worker(Person):
     active = models.BooleanField(default=True, null=False, blank=False)
