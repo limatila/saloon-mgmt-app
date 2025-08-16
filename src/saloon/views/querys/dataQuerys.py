@@ -11,7 +11,7 @@ from django.db.models import Count, Q
 from saloon import models
 
 MODEL_CHOICES: dict[str, Model] = { 
-    name.lower(): obj 
+    (name.lower() + "s"): obj 
     for name, obj in inspect.getmembers(models, inspect.isclass)
     if issubclass(obj, Model) and not (obj is Model) and not getattr(obj._meta, "abstract", False)
 }
@@ -35,7 +35,7 @@ def load_data_range(modelOption: str, range: int = 15, offset: int = 0) -> list[
 
     #special conditions
     match(modelOption):
-        case "worker":
+        case "workers":
             #load with data about related appointments
             return model.objects.annotate(
                 ongoing_schedules=Count('appointment', filter=Q(appointment__status='ONGOING')),

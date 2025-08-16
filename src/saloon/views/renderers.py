@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
+from django.http import Http404
 
 from saloon.views.querys import dataQuerys, formQuerys
 
 # Create your views here.
 
-#Redirections
+#* Redirections
 def REDIRECT_HOME(request):
     return redirect('home')
 def REDIRECT_ADMIN(request):
@@ -12,7 +13,7 @@ def REDIRECT_ADMIN(request):
 def BASE(request):
     return HOME(request, True)
 
-#Renders
+#* Renders
 def HOME(request, base: bool = False):
     title: str = "Home"
     if base: title = "Base"
@@ -21,7 +22,7 @@ def HOME(request, base: bool = False):
                         'baseRender': base,
                         'childRender': (not base),
                         'title': title,
-                        'workers': dataQuerys.load_data_range('worker', range=8, offset=0),
+                        'workers': dataQuerys.load_data_range('workers', range=8, offset=0),
                         
                         'appointments': dataQuerys.load_all_appointments_today(),
                         'qtt_ongoing_hour': dataQuerys.load_ongoing_appointments_next_hour(),
@@ -30,26 +31,24 @@ def HOME(request, base: bool = False):
                     }
             )
 
-def APPOINTMENTS(request):
-    title: str = "Appointments"
-    return render(request, 'pages/appointments.html', 
+def DYNAMIC_RENDER(request):
+    title: str = None
+    for modelName in dataQuerys.MODEL_CHOICES:
+        if modelName in request.path.lower():
+            title: str = modelName
+            break;
+    if not title:
+        raise Http404('The model for the view was not found.')
+
+    return render(request, f'pages/{title}.html', 
                     context={
                         'childRender': True,
-                        'title': title,
-                        'appointments': dataQuerys.load_data_range('appointment', range=0),
+                        'title': title.capitalize(),
+                        str(title): dataQuerys.load_data_range(title, range=0)
                     }
             )
 
-def WORKERS(request):
-    title: str = "Workers"
-    return render(request, 'pages/workers.html', 
-                    context={
-                        'childRender': True,
-                        'title': title,
-                        'workers': dataQuerys.load_data_range('worker', range=0),
-                    }
-            )
-
+#* Forms
 def REGISTRATION_APPOINTMENTS(request): 
     title: str = "Schedule an Appointment"
     formResult = formQuerys.register_client_and_appointment(request)
