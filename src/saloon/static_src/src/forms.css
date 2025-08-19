@@ -11,7 +11,16 @@
                 @apply font-semibold;
             }
             & div.form-field{
-                @apply mb-3;
+                @apply flex items-center justify-between;
+                @apply mb-2 border-4 border-pink-200 p-1.5;
+                @apply shadow-md drop-shadow-pink-800 ;
+                & label{
+                    @apply ml-1.5
+                }
+                & input, select{
+                    @apply grow ml-2 max-w-[90%] max-sm:scale-90;
+                    @apply border-b border-gray-500 p-2 opacity-80;
+                }
                 & p.error-message{
                     @apply text-red-600 text-sm;
                 }

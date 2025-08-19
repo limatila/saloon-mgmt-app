@@ -9,9 +9,9 @@ class ClientForm(forms.ModelForm):
         model = Client
         fields = ['name', 'CPF', 'phone_number']
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'rounded border p-2', 'placeholder': "nome de sobrenome"}),
-            'CPF': forms.TextInput(attrs={'class': 'rounded border p-2', 'placeholder': "XXX.XXX.XXX-xx"}),
-            'phone_number': forms.TextInput(attrs={'class': 'rounded border p-2', 'placeholder': "+55 85 ...."}),
+            'name': forms.TextInput(attrs={'class': 'form-field', 'placeholder': "name of name"}),
+            'CPF': forms.TextInput(attrs={'class': 'form-field', 'placeholder': "XXX.XXX.XXX-xx"}),
+            'phone_number': forms.TextInput(attrs={'class': 'form-field', 'placeholder': "+55 85 ...."}),
         }
 
     #Validation
@@ -42,7 +42,7 @@ class AppointmentForm(forms.ModelForm):
         widget=forms.DateTimeInput(
             attrs={
                 'type': 'datetime-local', #for widget use, only HTML / ISO format
-                'class': 'rounded border p-2',
+                'class': 'form-field',
             },
             format='%Y-%m-%dT%H:%M'
         ),
@@ -53,9 +53,9 @@ class AppointmentForm(forms.ModelForm):
         model = Appointment
         fields = ['service', 'worker', 'date_scheduled', 'status']
         widgets = {
-            'service': forms.Select(attrs={'class': 'rounded border p-2'}),
-            'worker': forms.Select(attrs={'class': 'rounded border p-2'}),
-            'status': forms.Select(attrs={'class': 'rounded border p-2'}),
+            'service': forms.Select(attrs={'class': 'form-field'}),
+            'worker': forms.Select(attrs={'class': 'form-field'}),
+            'status': forms.Select(attrs={'class': 'form-field'}),
         }
 
     #Validation

@@ -103,6 +103,7 @@ header {
 /** Nav bar at Header */
 #nav-bar{
   @apply flex justify-evenly;
+  @apply w-fit;
   & button{
     @apply border-2 border-white bg-white text-pink-700;
     @apply transition-colors duration-100;
