@@ -10,13 +10,11 @@
             Workers
         </a></button>
         {% endif %}
-        {% comment %} TODO finish clients page
-            {% if title != "Clients" %}
-                <button><a href="{% url "clients" %}">
-                    Clients
-                </a></button>
-            {% endif %}
-        {% endcomment %}
+        {% if title != "Clients" %}
+            <button><a href="{% url "clients" %}">
+                Clients
+            </a></button>
+        {% endif %}
         {% if title != "Appointments" %}
             <button><a href="{% url "appointments" %}">
                 Appointments
