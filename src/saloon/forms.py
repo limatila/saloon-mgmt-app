@@ -1,19 +1,19 @@
 #Django Forms models for data entrys
 from django import forms
 from datetime import datetime
-from .models import Appointment, Client
+from .models import Appointment, Client, Worker
+from django.contrib.auth import get_user_model
+User = get_user_model() #TODO create form
 from validate_docbr import CPF
 
-class ClientForm(forms.ModelForm):
+class BasePersonForm(forms.ModelForm):
     class Meta:
-        model = Client
-        fields = ['name', 'CPF', 'phone_number']
+        fields = ['name', 'CPF']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-field', 'placeholder': "name of name"}),
             'CPF': forms.TextInput(attrs={'class': 'form-field', 'placeholder': "XXX.XXX.XXX-xx"}),
-            'phone_number': forms.TextInput(attrs={'class': 'form-field', 'placeholder': "+55 85 ...."}),
         }
-
+    
     #Validation
     def clean_CPF(self):
         cpf = self.cleaned_data.get('CPF')
@@ -25,6 +25,18 @@ class ClientForm(forms.ModelForm):
             raise forms.ValidationError("CPF is not valid")
         return cpf
 
+    def validate_unique(self):
+        pass
+
+class ClientForm(BasePersonForm):
+    class Meta:
+        model = Client
+        fields = BasePersonForm.Meta.fields + ['phone_number']
+        widgets = {
+            **BasePersonForm.Meta.widgets,
+            'phone_number': forms.TextInput(attrs={'class': 'form-field', 'placeholder': "+55 85 ...."}),
+        }
+
     def clean_phone_number(self):
         number: str = self.cleaned_data.get('phone_number')
         charsToRemove = [' ', '(', ')']
@@ -33,9 +45,6 @@ class ClientForm(forms.ModelForm):
         for char in charsToRemove:
             number = number.replace(char, '')
         return number
-    
-    def validate_unique(self):
-        pass
 
 class AppointmentForm(forms.ModelForm):
     date_scheduled = forms.DateTimeField(
@@ -64,3 +73,15 @@ class AppointmentForm(forms.ModelForm):
         if schedule and schedule < datetime.now():
             raise forms.ValidationError("Scheduled time must be in the future.")
         return schedule
+
+class WorkerForm(BasePersonForm):
+    class Meta:
+        model = Worker
+        fields = BasePersonForm.Meta.fields + ['active', 'image']
+        widgets = {
+            **BasePersonForm.Meta.widgets,
+            'image': forms.FileInput(attrs={'class': 'rounded p-2'})
+        }
+
+
+#TODO: User form, User confirmation form, User login
