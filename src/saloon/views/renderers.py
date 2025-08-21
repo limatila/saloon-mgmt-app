@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 
 from saloon.views.querys import dataQuerys, formQuerys
 
@@ -9,7 +9,7 @@ from saloon.views.querys import dataQuerys, formQuerys
 def REDIRECT_HOME(request):
     return redirect('home')
 def REDIRECT_ADMIN(request):
-    return redirect('admin')
+    return HttpResponseRedirect('/admin/')
 def BASE(request):
     return HOME(request, True)
 

@@ -6,7 +6,7 @@ from .views import renderers
 urlpatterns = [
     #main
     path('', renderers.REDIRECT_HOME, name='root'),
-    path('admin', renderers.REDIRECT_ADMIN, name="admin"),
+    path('admin-redirection', renderers.REDIRECT_ADMIN, name="admin-redirection"),
     path('base', renderers.BASE, name='base-debug'),
     path('home', renderers.HOME, name='home'),
 
