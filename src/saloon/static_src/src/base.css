@@ -20,10 +20,9 @@ html{
   @apply scroll-smooth;
 }
 body, html{
+  @apply w-full h-full max-w-full max-h-full overflow-hidden;
+  @apply m-0 p-0;
   @apply rounded-none;
-  @apply w-screen h-screen;
-  @apply max-w-screen;
-  @apply overflow-auto;
 }
 body{
   @apply flex flex-col h-full;
@@ -119,7 +118,7 @@ header {
 
 /** Content - Replaceable per page */
 section.main-content{
-  @apply flex grow;
+  @apply flex grow w-full h-full overflow-hidden;
 }
 
 /** Footer */

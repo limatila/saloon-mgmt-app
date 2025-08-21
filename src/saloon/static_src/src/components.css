@@ -66,14 +66,14 @@ div.workers-view{
 
 /* Force each inner child to have its own fixed proportion */
 div.workers-view div.grid div.worker > * {
-    @apply basis-1/4 flex-shrink-0;
+  @apply basis-1/4 flex-shrink-0;
 }
 
 /* custom screen size */
 @media screen and (max-width: 490px ) {
-    div.workers-view div.grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
+  div.workers-view div.grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 /** daily view (simple flexbox) */
@@ -83,7 +83,7 @@ div.workers-view div.grid div.worker > * {
 
 /* custom screen height */
 @media screen and (max-height: 490px ) {
-    div.workers-view div.grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
+  div.workers-view div.grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }

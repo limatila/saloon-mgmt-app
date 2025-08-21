@@ -1,39 +1,49 @@
 @import "tailwindcss";
 
 .form-view{
-    @apply max-w-md mx-auto bg-white p-6;
-    @apply h-fit!;
-    & form{
-        @apply h-full flex flex-col;
-        & section.form-section{
-            @apply mb-5;
-            & h2{
-                @apply font-semibold;
+  @apply max-w-md mx-auto bg-white p-6;
+  @apply h-fit!;
+  & form{
+    @apply h-full flex flex-col justify-between;
+    & section.form-section{
+      @apply mb-5;
+      & h2{
+        @apply font-semibold;
+      }
+      & div.form-field{
+        @apply flex flex-col justify-between;
+        @apply mb-2 border-4 border-pink-200 p-1.5;
+        @apply shadow-md;
+        & div.field-input{
+              @apply flex flex-row items-center;
+            & label{
+              @apply ml-1.5;
             }
-            & div.form-field{
-                @apply flex items-center justify-between;
-                @apply mb-2 border-4 border-pink-200 p-1.5;
-                @apply shadow-md drop-shadow-pink-800 ;
-                & label{
-                    @apply ml-1.5
-                }
-                & input, select{
-                    @apply grow ml-2 max-w-[90%] max-sm:scale-90;
-                    @apply border-b border-gray-500 p-2 opacity-80;
-                }
-                & p.error-message{
-                    @apply text-red-600 text-sm;
-                }
+            & input, select{
+              @apply grow ml-2 max-w-[90%] max-sm:scale-90;
+              @apply border-b border-gray-500 p-2 opacity-80;
             }
         }
-        & div.form-submit{
-            @apply flex gap-2 w-fit place-self-end;
-            & button[type="submit"]{
-                @apply px-4 py-2 bg-blue-600 text-white;
-            }
-            & a[href$="home"]{
-                @apply px-4 py-2 border;
-            }
+        & p.error-message{
+          @apply text-red-600 text-sm;
         }
+      }
     }
+    & div.form-submit{
+      @apply flex gap-2 w-fit place-self-end;
+      & button[type="submit"]{
+        @apply px-4 py-2 bg-blue-600 text-white;
+      }
+      & a[href$="home"]{
+        @apply px-4 py-2 border;
+      }
+    }
+  }
+}
+
+/* form alert boxes */
+div.alert-box {
+  @apply absolute z-50 left-[50%] top-[50%];
+  @apply -translate-x-2/4 -translate-y-2/4;
+  @apply w-1/4 h-fit flex flex-col;
 }
