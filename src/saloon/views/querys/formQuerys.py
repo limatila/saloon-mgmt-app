@@ -2,6 +2,8 @@
 from datetime import datetime, timedelta
 
 from saloon.forms import *
+from saloon.utils.extra_validations import verify_client_is_active
+
 
 def register_client_and_appointment(request) -> dict[str, ClientForm | AppointmentForm] | bool:
     match(request.method):
@@ -17,7 +19,11 @@ def register_client_and_appointment(request) -> dict[str, ClientForm | Appointme
                 if client_cpf:
                     client = client_cpf
                 elif client_phone:
-                    client = client_phone
+                    if not verify_client_is_active(client_phone):
+                        client_phone.delete()
+                        client = client_form.save()
+                    else:
+                        client = client_phone
                 else:
                     client = client_form.save()
                 appointment = appointment_form.save(commit=False)
@@ -40,3 +46,5 @@ def register_client_and_appointment(request) -> dict[str, ClientForm | Appointme
             }
 
     return forms
+
+#TODO worker form query
