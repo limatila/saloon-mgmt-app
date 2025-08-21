@@ -1,0 +1,43 @@
+{% extends "common/base.html" %}
+
+{% block head %}
+    {% include "common/head-full-view.html" %}
+{% endblock head %}
+
+{% block content %}
+<!-- Scheduler Render -->
+    <div class="form-view view">
+        <form method="post" novalidate>
+            {% csrf_token %}
+
+            <section class="form-section">
+                <h2>Client Info</h2>
+                {% for field in client_form %}
+                    {% include "common/form-dynamic-field.html" %}
+                {% endfor %}
+            </section>
+
+            <section class="form-section">
+                <h2>Appointment Info</h2>
+                {% for field in appointment_form %}
+                    {% include "common/form-dynamic-field.html" %}
+                {% endfor %}
+            </section>
+
+            {% include "common/form-submit.html" %}
+
+        </form>
+    </div>
+
+    {% comment %} * for non field specific validation errors (aka. clean() custom implementations) {% endcomment %}
+    {% if form.non_field_errors %}
+        <div class="alert-box">
+            <h3>Form Errors:</h3>
+            <ul>
+                {% for error in form.non_field_errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+{% endblock content %}

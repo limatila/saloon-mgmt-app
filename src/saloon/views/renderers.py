@@ -55,7 +55,7 @@ def REGISTRATION_APPOINTMENTS(request):
     if formResult is True: 
         return REDIRECT_HOME(request)
     elif isinstance(formResult, dict): 
-        return render(request, "pages/clients/schedule-appointments.html",
+        return render(request, "pages/mgmt/schedule-appointments.html",
                     context={
                         'childRender': True,
                         'title': title,
