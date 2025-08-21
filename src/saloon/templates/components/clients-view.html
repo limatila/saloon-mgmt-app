@@ -1,0 +1,38 @@
+<div class="appointments-view view">
+    {% if title == 'Home' %}
+        <h1>Appointments of the day</h1>
+    {% endif %}
+    <table>
+        {% comment %} display small list view of all appointments w/ data {% endcomment %}
+        <thead>
+            <tr class="bg-pink-200">
+                <th>Name</th>
+                <th>CPF</th>
+                <th>Total services count</th>
+                <th>Active services count</th>
+                <th>Phone number</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in clients %}
+                <tr class="hover:bg-gray-50">
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.CPF }}</td>
+                    <td>{{ item.total_schedules }}</td>
+                    <td>{{ item.ongoing_schedules }}</td>
+                    <td>{{ item.phone_number }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="1000" class="py-4 text-gray-500">No clients found.<br> Please add it at
+                        <button class="animate-bounce hover:animate-none text-blue-600 hover:scale-150 transition-transform duration-150">
+                            <a href="{% url "schedule-appointment" %}">
+                                a schedule appointment
+                            </a>
+                        </button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

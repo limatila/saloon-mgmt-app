@@ -41,6 +41,11 @@ def load_data_range(modelOption: str, range: int = 15, offset: int = 0) -> list[
                 ongoing_schedules=Count('appointment', filter=Q(appointment__status='ONGOING')),
                 finished_schedules=Count('appointment', filter=Q(appointment__status='FINISHED'))
             )
+        case "clients":
+            return model.objects.annotate(
+                total_schedules=Count('appointment'),
+                ongoing_schedules=Count('appointment', filter=Q(appointment__status='ONGOING'))
+            )
         case _:
             pass
 
