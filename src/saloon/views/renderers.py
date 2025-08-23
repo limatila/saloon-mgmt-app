@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import Http404, HttpResponseRedirect
 
-from saloon.views.querys import dataQuerys, formQuerys
+from saloon.views.services import dataQuerys, formQuerys
 
 # Create your views here.
 
@@ -61,6 +61,23 @@ def REGISTRATION_APPOINTMENTS(request):
                         'title': title,
                         'client_form': formResult['client_form'],
                         'appointment_form': formResult['appointment_form'],
+                    }
+            )
+    else:
+        raise Exception("formResult did not returned a sufficient value")
+
+def REGISTRATION_WORKERS(request): 
+    title: str = "Worker Registration"
+    formResult = formQuerys.register_worker(request)
+    if formResult is True: 
+        request.path = "/workers/"
+        return DYNAMIC_RENDER(request)
+    elif isinstance(formResult, dict): 
+        return render(request, "pages/mgmt/worker-registration.html",
+                    context={
+                        'childRender': True,
+                        'title': title,
+                        'worker_form': formResult['worker_form'],
                     }
             )
     else:

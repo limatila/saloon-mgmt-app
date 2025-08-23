@@ -1,7 +1,10 @@
 <div class="workers-view view">
-    {% if title == 'Home' %}
-        <h1>Workers available</h1>
-    {% endif %}
+    <div class="view-head">
+        {% if title == 'Home' %}
+            <h1>Workers</h1>
+        {% endif %}
+        <a href="{% url "register-worker" %}">New</a>
+    </div>
     {% if workers|length > 0 %}
         <div class="grid">
             {% for item in workers %}
@@ -33,10 +36,9 @@
         </div>
     {% else %}
     <div class="flex w-full justify-center items-center">
-        <h2 class="font-sans text-gray-600 p-4 border-1 border-gray-500 text-center">No workers found.<br> Please add them at
+        <h2 class="font-sans text-gray-600 p-4 border-1 border-gray-500 text-center">No workers found.<br> Please add one 
             <button class="animate-bounce hover:animate-none text-blue-600 hover:scale-150 transition-transform duration-150">
-                {% comment %} TODO add url to form {% endcomment %}
-                <a href=""> 
+                <a href="{% url "register-worker" %}"> 
                     here
                 </a>
             </button>

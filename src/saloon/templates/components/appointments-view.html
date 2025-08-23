@@ -1,7 +1,10 @@
 <div class="appointments-view view">
-    {% if title == 'Home' %}
-        <h1>Appointments of the day</h1>
-    {% endif %}
+    <div class="view-head">
+        {% if title == 'Home' %}
+            <h1>Appointments of the day</h1>
+        {% endif %}
+        <a href="{% url "register-worker" %}">New</a>
+    </div>
     <table>
         {% comment %} display small list view of all appointments w/ data {% endcomment %}
         <thead>
@@ -38,7 +41,7 @@
                 </tr>
             {% empty %}
                 <tr>
-                    <td colspan="1000" class="py-4 text-gray-500">No appointments found.<br> Please add it at
+                    <td colspan="1000" class="py-4 text-gray-500">No appointments found {% if title == "Home" %}<i>for today</i>{% endif %}.<br> Please add it at
                         <button class="animate-bounce hover:animate-none text-blue-600 hover:scale-150 transition-transform duration-150">
                             <a href="{% url "schedule-appointment" %}">
                                 here

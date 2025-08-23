@@ -47,4 +47,21 @@ def register_client_and_appointment(request) -> dict[str, ClientForm | Appointme
 
     return forms
 
-#TODO worker form query
+def register_worker(request) -> dict[str, WorkerForm] | bool:
+    match(request.method):
+        case 'POST':
+            #form submitted
+            worker_form = WorkerForm(request.POST, request.FILES)
+            if worker_form.is_valid():
+                worker_form.save()
+                return True
+            else:
+                forms = {
+                    'client_form': worker_form,
+                }
+        case "GET":
+            forms = {
+                'worker_form': WorkerForm(),
+            }
+
+    return forms

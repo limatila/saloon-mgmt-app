@@ -16,7 +16,8 @@ urlpatterns = [
     path('clients', renderers.DYNAMIC_RENDER, name='clients'),
 
     #forms
-    path('schedule', renderers.REGISTRATION_APPOINTMENTS, name="schedule-appointment")
+    path('new-appointment', renderers.REGISTRATION_APPOINTMENTS, name="schedule-appointment"),
+    path('new-worker', renderers.REGISTRATION_WORKERS, name="register-worker")
 ]
 
 #! statics, remove for production
