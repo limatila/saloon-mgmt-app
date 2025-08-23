@@ -48,6 +48,7 @@ p, span, td{
 }
 button{
   @apply font-sans font-semibold;
+  @apply transition-colors duration-125;
 }
 form{
   @apply font-sans;
@@ -105,7 +106,6 @@ header {
   @apply w-fit;
   & button{
     @apply border-2 border-white bg-white text-pink-700;
-    @apply transition-colors duration-100;
     @apply max-sm:scale-90 lg:scale-125;
   }
   & button:hover{

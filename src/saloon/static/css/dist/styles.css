@@ -486,6 +486,11 @@ button {
   font-family: var(--font-sans);
   --tw-font-weight: var(--font-weight-semibold);
   font-weight: var(--font-weight-semibold);
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+  --tw-duration: 125ms;
+  transition-duration: 125ms;
 }
 form {
   font-family: var(--font-sans);
@@ -566,11 +571,6 @@ header {
     border-color: var(--color-white);
     background-color: var(--color-white);
     color: var(--color-pink-700);
-    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
-    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
-    transition-duration: var(--tw-duration, var(--default-transition-duration));
-    --tw-duration: 100ms;
-    transition-duration: 100ms;
     @media (width < 40rem) {
       --tw-scale-x: 90%;
       --tw-scale-y: 90%;
@@ -792,6 +792,18 @@ footer {
   border-color: var(--color-pink-300);
   --tw-shadow: 0 10px 15px -3px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 4px 6px -4px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
   box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  & div.view-head {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    & a {
+      font-family: var(--font-sans);
+      --tw-font-weight: var(--font-weight-semibold);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-blue-600);
+      place-self: center end;
+    }
+  }
 }
 div.appointments-view {
   overflow-x: auto;
@@ -1107,6 +1119,18 @@ div.workers-view div.grid div.worker > * {
             border-color: var(--color-gray-500);
             padding: calc(var(--spacing) * 2);
             opacity: 80%;
+          }
+          & input[type="checkbox"] {
+            flex-grow: 0;
+          }
+          & input[type="file"] {
+            border-style: var(--tw-border-style);
+            border-width: 1px;
+            border-color: var(--color-gray-400);
+          }
+          & input[type="file"]:hover {
+            background-color: var(--color-gray-500);
+            color: var(--color-white);
           }
         }
         & p.error-message {
