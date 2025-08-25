@@ -1,6 +1,8 @@
 # for usage in forms
 from datetime import datetime, timedelta
 
+from django.contrib.auth import authenticate, login
+
 from saloon.forms import *
 from saloon.utils.extra_validations import verify_client_is_active
 
@@ -35,7 +37,7 @@ def register_client_and_appointment(request) -> dict[str, ClientForm | Appointme
                     'client_form': client_form,
                     'appointment_form': appointment_form
                 }
-        case "GET":
+        case 'GET':
             # if client loading in form / client inserted invalid values
             initial_dt = (
                 datetime.now().replace(second=0, minute=0) + timedelta(hours=1)
@@ -57,11 +59,37 @@ def register_worker(request) -> dict[str, WorkerForm] | bool:
                 return True
             else:
                 forms = {
-                    'client_form': worker_form,
+                    'worker_form': worker_form,
                 }
-        case "GET":
+        case 'GET':
             forms = {
                 'worker_form': WorkerForm(),
+            }
+
+    return forms
+
+#* Auth services
+def login_user(request) -> dict[str, LoginForm] | bool:
+    match(request.method):
+        case 'POST':
+            #form submitted
+            login_form = LoginForm(request.POST)
+            if login_form.is_valid():
+                userToLogin = authenticate(
+                    username=login_form.cleaned_data['username'],
+                    password=login_form.cleaned_data['password'],
+                )
+                if not userToLogin:
+                    # Add a non-field error to the form for the template to display.
+                    login_form.add_error(None, "Invalid username or password. Please try again.")
+            
+                login(request, userToLogin)
+                return True
+
+            forms = {'login_form': login_form}
+        case 'GET':
+            forms = {
+                'login_form': LoginForm(),
             }
 
     return forms

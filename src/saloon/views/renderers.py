@@ -52,9 +52,9 @@ def DYNAMIC_RENDER(request):
 def REGISTRATION_APPOINTMENTS(request): 
     title: str = "Schedule an Appointment"
     formResult = formQuerys.register_client_and_appointment(request)
-    if formResult is True: 
+    if formResult is True:
         return REDIRECT_HOME(request)
-    elif isinstance(formResult, dict): 
+    elif isinstance(formResult, dict):
         return render(request, "pages/mgmt/schedule-appointments.html",
                     context={
                         'childRender': True,
@@ -69,15 +69,32 @@ def REGISTRATION_APPOINTMENTS(request):
 def REGISTRATION_WORKERS(request): 
     title: str = "Worker Registration"
     formResult = formQuerys.register_worker(request)
-    if formResult is True: 
+    if formResult is True:
         request.path = "/workers/"
         return DYNAMIC_RENDER(request)
-    elif isinstance(formResult, dict): 
+    elif isinstance(formResult, dict):
         return render(request, "pages/mgmt/worker-registration.html",
                     context={
                         'childRender': True,
                         'title': title,
                         'worker_form': formResult['worker_form'],
+                    }
+            )
+    else:
+        raise Exception("formResult did not returned a sufficient value")
+
+#* Auth
+def USER_AUTH(request):
+    title: str = "User Login"
+    formResult = formQuerys.login_user(request)
+    if formResult is True:
+        return REDIRECT_HOME(request)
+    elif isinstance(formResult, dict):
+        return render(request, "pages/auth/user-auth.html",
+                    context={
+                        'childRender': True,
+                        'title': title,
+                        'login_form': formResult['login_form'],
                     }
             )
     else:

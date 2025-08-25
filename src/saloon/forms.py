@@ -99,3 +99,6 @@ class AppointmentForm(forms.ModelForm):
 
 
 #TODO: User form, User confirmation form, User login
+class LoginForm(forms.Form):
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-field', 'autocomplete': 'off'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-field', 'autocomplete': 'off'}))

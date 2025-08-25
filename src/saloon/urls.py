@@ -11,13 +11,16 @@ urlpatterns = [
     path('home', renderers.HOME, name='home'),
 
     #per view
-    path('workers', renderers.DYNAMIC_RENDER, name='workers'),
-    path('appointments', renderers.DYNAMIC_RENDER, name='appointments'),
-    path('clients', renderers.DYNAMIC_RENDER, name='clients'),
+    path('views/workers', renderers.DYNAMIC_RENDER, name='workers'),
+    path('views/appointments', renderers.DYNAMIC_RENDER, name='appointments'),
+    path('views/clients', renderers.DYNAMIC_RENDER, name='clients'),
 
     #forms
-    path('new-appointment', renderers.REGISTRATION_APPOINTMENTS, name="schedule-appointment"),
-    path('new-worker', renderers.REGISTRATION_WORKERS, name="register-worker")
+    path('new/appointment', renderers.REGISTRATION_APPOINTMENTS, name="schedule-appointment"),
+    path('new/worker', renderers.REGISTRATION_WORKERS, name="register-worker"),
+
+    #auth
+    path('auth', renderers.USER_AUTH, name="auth"),
 ]
 
 #! statics, remove for production
